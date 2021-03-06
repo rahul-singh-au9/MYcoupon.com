@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {Link} from "react-router-dom"
 import { Button } from "@material-ui/core";
 import './verify.css';
 
@@ -7,16 +8,16 @@ const VerifyQr = () => {
     const coupons = ["Iphone", "One plus", "one plus", "oneplus", "Nokia", "nokia", "Samsung", "samsung", "iphone", "nike", "Nike", "Denim", "denim", "Adidas", "adidas", "mango", "Mango" ];
 
     const [value, setValue] = useState('');
-    const [data, setData] = useState(false)
-    const [error, setError] = useState("")
+    const [data, setData] = useState(false);
+    const [error, setError] = useState("");
 
     const clickHandler = () => {
         for (var i = 0; i < coupons.length; i++) {
-        if (coupons[i] === value) {
+        if (coupons[i] === value && value!=="") {
             setData(true);
         }
         }
-        setError("The coupon is not valid or expired !")
+        value !=="" && setError("The coupon is not valid or expired !")
     }
 
     return (
@@ -39,7 +40,9 @@ const VerifyQr = () => {
                 <div className="city">
                     <h2 className="city-name">
                         <span>{` your coupon code is ${value}`}</span> <br/>
-                        <span>{`The coupon is valid on ${value}`}</span>
+                        <span>{`The coupon is valid on ${value}`}</span> <br/>
+
+                        <span><Link to={{pathname:"https://www.amazon.in/"}} target="_blank">visit the site here</Link></span>
                     </h2>
                 </div>
 
