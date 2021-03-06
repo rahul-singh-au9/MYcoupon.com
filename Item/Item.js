@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@material-ui/core/";
 import { useDispatch } from "react-redux";
-import { likePost} from "../../../actions/postsActions";
+// import { likePost} from "../../../actions/postsActions";
 import useStyles from "./styles";
 import moment from "moment";
 
