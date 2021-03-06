@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useState} from "react";
 import { Grid, Grow, Card, CardActions, CardContent, CardMedia, Button, Typography  } from "@material-ui/core";
 import useStyles from "./styles";
+import QRCode from 'qrcode';
+// import QrReader from 'react-qr-reader';
 
 const itemCards = [
   {
     title: "Iphone",
     name: "Iphone",
+    value: "Iphone",
     message: "Think Different",
     url: "https://digiday.com/wp-content/uploads/2015/09/iphone7-alt-782x436.jpg",
     id: "Left",
@@ -13,6 +16,7 @@ const itemCards = [
   {
     title: "One plus",
     name: "One plus",
+    value: "One plus",
     message: "Pretty much everything you could ask for",
     url: "https://images-na.ssl-images-amazon.com/images/I/51s0Mb5li8L._SX679_.jpg",
     id: "Right"
@@ -20,6 +24,7 @@ const itemCards = [
   {
     title: "Samsung",
     name: "Samsung",
+    value: "Samsung",
     message: "Inspire the World, Create the Future",
     url: "https://images.samsung.com/is/image/samsung/levant-galaxy-s20-plus-g985-bts-sm-g985fzpdmid-frontbpurple-261902310?$720_576_PNG$",
     id: "Top"
@@ -27,6 +32,7 @@ const itemCards = [
   {
     title: "Nokia",
     name: "Nokia",
+    value: "Nokia",
     message: "At Nokia, “Connecting People",
     url: "https://drop.ndtv.com/TECH/product_database/images/2152017124957PM_635_nokia_3310.jpeg?downsize=*:180&output-quality=80",
     id: "Bottom",
@@ -35,6 +41,17 @@ const itemCards = [
 
 const Electronics = () => {
   const classes = useStyles();
+  const [imageUrl, setImageUrl] = useState('')
+
+    const generateQrCode = async () => {
+      try {
+          const response = await QRCode.toDataURL(itemCards.map((itemCard) =>(itemCard.value) ));
+          setImageUrl(response);
+
+      } catch (error) {
+        console.log(error);
+      }
+  }
 
   return (
     <Grow in>
@@ -80,11 +97,19 @@ const Electronics = () => {
                   </CardContent>
 
                   <CardActions className={classes.cardActions}>
+
                       <Button size="small"
                       color="primary"
+                      onClick={() => generateQrCode()}
                       >
                         generate coupon code
                       </Button>
+                      <br/>
+                      <br/>
+                  {imageUrl ? (
+                    <a href={imageUrl} download>
+                        <img src={imageUrl} alt="img"/>
+                    </a>) : null}
 
                 </CardActions>
             </Card>
