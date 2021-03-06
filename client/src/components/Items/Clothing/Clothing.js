@@ -1,4 +1,5 @@
 import React, { useState} from "react";
+import {Link} from "react-router-dom";
 import { Grid, Grow, Card, CardActions, CardContent, CardMedia, Button, Typography  } from "@material-ui/core";
 import useStyles from "./styles";
 import QRCode from 'qrcode';
@@ -106,7 +107,16 @@ const Clothing = () => {
                   <br/>
                   {imageUrl ? (
                     <a href={imageUrl} download>
+
                         <img src={imageUrl} alt="img"/>
+
+                        <Link to="/verify">
+                          <Button size="small" color="primary">
+                          Next
+                          </Button>
+                        </Link>
+
+
                     </a>) : null}
 
                 </CardActions>

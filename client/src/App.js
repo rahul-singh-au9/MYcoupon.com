@@ -4,6 +4,7 @@ import { Container} from "@material-ui/core";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
+import VerifyQr from "./components/VerifyQr/VerifyQr";
 
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
                 <Switch>
                     <Route path="/" exact component={Auth}/>
                     <Route path="/home" exact component={Home}/>
+                    <Route path="/verify" exact component={VerifyQr}/>
                 </Switch>
             </Container>
         </BrowserRouter>

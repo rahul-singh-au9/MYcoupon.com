@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { Grid, Grow, Card, CardActions, CardContent, CardMedia, Button, Typography  } from "@material-ui/core";
+import {Link} from "react-router-dom"
 import useStyles from "./styles";
 import QRCode from 'qrcode';
-// import QrReader from 'react-qr-reader';
+import QrReader from 'react-qr-reader';
 
 const itemCards = [
   {
@@ -108,7 +109,16 @@ const Electronics = () => {
                       <br/>
                   {imageUrl ? (
                     <a href={imageUrl} download>
+
                         <img src={imageUrl} alt="img"/>
+
+                        <Link to="/verify">
+                          <Button size="small" color="primary">
+                          Next
+                          </Button>
+                        </Link>
+
+
                     </a>) : null}
 
                 </CardActions>
