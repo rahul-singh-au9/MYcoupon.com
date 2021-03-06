@@ -43,10 +43,14 @@ const itemCards = [
 const Electronics = () => {
   const classes = useStyles();
   const [imageUrl, setImageUrl] = useState('')
+  const [active, setActive] = useState(false)
 
-    const generateQrCode = async () => {
+    const generateQrCode = async (value) => {
+      setActive(value)
+      const filterObj = itemCards.filter(itemCard=> itemCard.id===value)
+      // console.log(filterObj , value)
       try {
-          const response = await QRCode.toDataURL(itemCards.map((itemCard) =>(itemCard.value) ));
+          const response = await QRCode.toDataURL(filterObj[0].value);
           setImageUrl(response);
 
       } catch (error) {
@@ -101,13 +105,14 @@ const Electronics = () => {
 
                       <Button size="small"
                       color="primary"
-                      onClick={() => generateQrCode()}
-                      >
+                      data-id={itemCard.id}
+                      onClick={()=>generateQrCode(itemCard.id)}
+                    >
                         generate coupon code
                       </Button>
                       <br/>
                       <br/>
-                  {imageUrl ? (
+                  {imageUrl && (active === itemCard.id) ? (
                     <a href={imageUrl} download>
 
                         <img src={imageUrl} alt="img"/>
