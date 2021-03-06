@@ -34,7 +34,7 @@ const Navbar = () => {
         type: LOGOUT
       });
 
-      history.push('/auth');
+      history.push('/');
 
       setUser(null);
     };

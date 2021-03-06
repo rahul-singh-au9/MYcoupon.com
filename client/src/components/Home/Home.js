@@ -1,19 +1,33 @@
 import React from "react";
-import { Container, Grow, Grid } from "@material-ui/core";
-
+import { Container, Grow, Grid, Paper, Typography } from "@material-ui/core";
+import useStyles from "./styles";
 
 const Home = () => {
+    const classes = useStyles();
 
   return (
         <Grow in>
             <Container>
                 <Grid container justify="space-between" alignItems="stretch" spacing={3}>
 
-                    <Grid item xs={12} sm={7}>
+                    <Paper className={classes.appBar}>
+                      <Typography className={classes.userName} variant="h6">
+                        Electronics
+                      </Typography>
+                    </Paper>
+
+                    <Grid item xs={12} sm={12}>
+
                       {/* <Posts> */}
                     </Grid>
 
-                    <Grid item xs={12} sm={4}>
+                    <Paper className={classes.appBar}>
+                      <Typography className={classes.userName} variant="h6">
+                        Clothing
+                      </Typography>
+                    </Paper>
+
+                    <Grid item xs={12} sm={12}>
                       {/* <Form> */}
                     </Grid>
 
