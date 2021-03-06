@@ -8,15 +8,15 @@ const VerifyQr = () => {
 
     const [value, setValue] = useState('');
     const [data, setData] = useState(false)
+    const [error, setError] = useState("")
 
-    const clickHandler = (e) => {
-        // setValue(e.target.value)
-
+    const clickHandler = () => {
         for (var i = 0; i < coupons.length; i++) {
         if (coupons[i] === value) {
             setData(true);
         }
         }
+        setError("The coupon is not valid or expired !")
     }
 
     return (
@@ -33,8 +33,9 @@ const VerifyQr = () => {
             <Button size="small" color="default" variant="contained" onClick={clickHandler}>Validate</Button>
             <br/>
 
+
             {
-                data ? (
+                data && value ? (
                 <div className="city">
                     <h2 className="city-name">
                         <span>{` your coupon code is ${value}`}</span> <br/>
@@ -45,7 +46,7 @@ const VerifyQr = () => {
                 ) : (
                 <div className="city">
                     <h2 className="city-name">
-                        <span>{`The coupon is not valid or expired !`}</span>
+                        <span>{error}</span>
                     </h2>
                 </div>
                 )
